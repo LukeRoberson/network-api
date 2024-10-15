@@ -1,0 +1,15 @@
+# Sample config file
+# Copy this file to config.yaml and update the values as needed
+
+sql:
+  auth-type: SQL
+  database: my_database
+  password: xxxx
+  port: '1433'
+  salt: xxxx
+  server: sql_server
+  username: DOMAIN\user
+web:
+  debug: true
+  ip: 0.0.0.0
+  port: '5010'
