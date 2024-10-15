@@ -1,0 +1,10 @@
+.venv/
+.vscode/
+*.pyc
+*.pyo
+*.cer
+*.key
+*.pem
+config.yaml
+config_yaml.txt
+to_fix.txt
