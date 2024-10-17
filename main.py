@@ -16,10 +16,13 @@ Example:
 
 from flask import Flask
 from flask_cors import CORS
+from flask_swagger_ui import get_swaggerui_blueprint
 
 import os
 from config_parse import config
 from colorama import Fore, Style
+
+from azure import azure_bp
 from apiroutes import api_bp
 from device import site_manager, device_manager
 from vpn import vpn_manager
@@ -59,8 +62,24 @@ if config.config_valid is False:
     )
     exit(1)
 
-# Load everything
+# Load the API documentation
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.yaml'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Network Management API"
+    }
+)
+app.register_blueprint(
+    swaggerui_blueprint,
+    url_prefix=SWAGGER_URL
+)
+
 app.register_blueprint(api_bp)
+app.register_blueprint(azure_bp)
+
 site_manager.get_sites()
 device_manager.get_devices()
 vpn_manager.load_vpn()

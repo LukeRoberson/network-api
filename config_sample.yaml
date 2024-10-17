@@ -13,3 +13,10 @@ web:
   debug: true
   ip: 0.0.0.0
   port: '5010'
+azure:
+  app-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  app-secret: xxx
+  redirect-uri: /getAToken
+  tenant-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  admin-group: admins
+  helpdesk-group: Helpdesk

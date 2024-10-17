@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Network API
+  description: API to interact with the network management system
+  version: 1.0.0
+tags:
+  - name: Configuration
+    description: Manage configuration settings for the API framework
+  - name: Management
+    description: Manage sites and devices
+  - name: Endpoint Control
+    description: Interact with endpoints (managed devices)
+
+paths:
+  /api/sql:
+    post:
+      tags:
+        - Configuration
+      summary: Manage SQL setttings
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Problem with the given query
+
+  /api/web:
+    get:
+      tags:
+        - Configuration
+      summary: Manage web interface setttings
+      responses:
+        '200':
+          description: Successful response
+
+  /api/site:
+    get:
+      tags:
+        - Management
+      summary: Manage sites
+      responses:
+        '200':
+          description: Successful response
+
+  /api/device:
+    get:
+      tags:
+        - Management
+      summary: Manage devices
+      responses:
+        '200':
+          description: Successful response
+
+  /api/objects:
+    get:
+      tags:
+        - Endpoint Control
+      summary: Interact with objects on devices
+      responses:
+        '200':
+          description: Successful response
+
+  /api/policies:
+    get:
+      tags:
+        - Endpoint Control
+      summary: Interact with policies on devices
+      responses:
+        '200':
+          description: Successful response
+
+  /api/vpn:
+    get:
+      tags:
+        - Endpoint Control
+      summary: Interact with VPNs on devices
+      responses:
+        '200':
+          description: Successful response

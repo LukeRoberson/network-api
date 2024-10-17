@@ -85,6 +85,14 @@ class AppSettings():
         self.web_port = config['web']['port']
         self.web_debug = config['web']['debug']
 
+        # Azure settings
+        self.redirect_uri = config['azure']['redirect-uri']
+        self.azure_tenant = config['azure']['tenant-id']
+        self.azure_app = config['azure']['app-id']
+        self.azure_secret = config['azure']['app-secret']
+        self.azure_admin_group = config['azure']['admin-group']
+        self.azure_helpdesk_group = config['azure']['helpdesk-group']
+
     def _validate_config(
         self,
         config: dict,
@@ -97,6 +105,7 @@ class AppSettings():
         1. Check for the 'sql' section
         2. Check for the 'web' section
         3. Check that 'debug' is true/false
+        4. Check for the 'azure' section
 
         Args:
             config (dict): The configuration settings
@@ -163,6 +172,31 @@ class AppSettings():
             self.config_valid = False
             return
 
+        # Check for the 'azure' section
+        if 'azure' not in config:
+            print(
+                Fore.RED,
+                "Config: The 'azure' section is missing from the config file.",
+                Style.RESET_ALL
+            )
+            self.config_valid = False
+            return
+
+        # Check that azure config parameters all exist in the azure section
+        params = [
+            'app-id', 'app-secret', 'redirect-uri',
+            'tenant-id', 'admin-group', 'helpdesk-group'
+        ]
+        if not all(key in config['azure'] for key in params):
+            print(
+                Fore.RED,
+                "Config: All parameters need to exist in the Azure section:\n",
+                "'app-id', 'app-secret', 'redirect-uri', 'tenant-id'",
+                Style.RESET_ALL
+            )
+            self.config_valid = False
+            return
+
         # When all checks pass
         self.config_valid = True
 
@@ -187,7 +221,15 @@ class AppSettings():
                 'ip': self.web_ip,
                 'port': self.web_port,
                 'debug': self.web_debug,
-            }
+            },
+            'azure': {
+                'redirect-uri': self.redirect_uri,
+                'tenant-id': self.azure_tenant,
+                'app-id': self.azure_app,
+                'app-secret': self.azure_secret,
+                'admin-group': self.azure_admin_group,
+                'helpdesk-group': self.azure_helpdesk_group,
+            },
         }
 
         try:

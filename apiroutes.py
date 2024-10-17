@@ -217,7 +217,7 @@ class SqlView(MethodView):
                     "result": "Failure",
                     "message": "Unknown action supplied"
                 }
-            ), 500
+            ), 400
 
 
 class WebView(MethodView):
