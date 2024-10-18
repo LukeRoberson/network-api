@@ -1,5 +1,5 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.12.6-slim
+FROM python:3.12.7-slim
 LABEL maintainer="Luke Robertson <lrobertson@lakemac.nsw.gov.au>"
 
 # Manage packages for security

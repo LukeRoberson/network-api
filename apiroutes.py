@@ -22,7 +22,6 @@ from flask import (
     jsonify,
     Response,
 )
-
 from flask.views import MethodView
 
 import base64
@@ -35,6 +34,7 @@ from vpn import vpn_manager
 from config_parse import AppSettings, config
 from sql import SqlServer
 from encryption import CryptoSecret
+from azure.jwt import token_required
 
 from pa_api import DeviceApi as PaDeviceApi
 from junos_api import DeviceApi as JunosDeviceApi
@@ -500,6 +500,7 @@ class DeviceView(MethodView):
             reset: Reset the encryption for devices.
     '''
 
+    @token_required
     def get(
         self,
         device_manager: DeviceManager,

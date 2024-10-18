@@ -22,7 +22,7 @@ import os
 from config_parse import config
 from colorama import Fore, Style
 
-from azure import azure_bp
+from azure.azure import azure_bp
 from apiroutes import api_bp
 from device import site_manager, device_manager
 from vpn import vpn_manager
